@@ -8,13 +8,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class MyViewModel : ViewModel() {
-    private val _data = MutableStateFlow("Click the button to fetch data")
+    private val _data = MutableStateFlow("")
     val data: StateFlow<String> = _data
 
     fun fetchData() {
         viewModelScope.launch {
             _data.value = "Loading..."
-            _data.value = Repository.fetchData()
+            _data.value = Repository.fetchData() +  " via viewModelScope."
         }
     }
 }
